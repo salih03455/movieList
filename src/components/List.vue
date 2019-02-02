@@ -6,11 +6,9 @@
         v-for="listitem in listdata.data"
         :key="listitem.id"
         :listitemdata="listitem"
-        :type="listdata.title"
       />
     </div>
   </div>
-
 </template>
 
 <script>

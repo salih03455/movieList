@@ -15,8 +15,10 @@
 </template>
 
 <script>
+import { eventBus } from '../main'
+
 export default {
-  props: ['listitemdata', 'type'],
+  props: ['listitemdata'],
   methods: {
     getImgUrl () {
       let images = require.context('../assets/images/movies', false)
@@ -26,8 +28,7 @@ export default {
       return this.listitemdata.published_date.split('-')[0];
     },
     addFav () {
-      let favInfo = { title:this.type, id: this.listitemdata.id };
-      console.log (favInfo);
+      eventBus.$emit('favoriteItem', this.listitemdata);
     }
   }
 }
