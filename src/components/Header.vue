@@ -23,8 +23,10 @@ export default {
     }
   },
   created () {
-    fetch ('https://dtv-projects.firebaseio.com/menu.json')
-      .then((res) => { return res.json() })
+    fetch('https://dtv-projects.firebaseio.com/menu.json')
+      .then((res) => {
+        return res.json()
+      })
       .then((res) => {
         this.menuItems = res
       })

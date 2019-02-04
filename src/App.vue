@@ -40,11 +40,11 @@ export default {
   methods: {
     addFavorites (fItem) {
       this.favorites.push(fItem)
-      localStorage.setItem('favories', JSON.stringify(this.favorites));
+      localStorage.setItem('favories', JSON.stringify(this.favorites))
     },
     removeFavorites (i) {
       this.$delete(this.favorites, i)
-      localStorage.setItem('favories', JSON.stringify(this.favorites));
+      localStorage.setItem('favories', JSON.stringify(this.favorites))
     }
   },
   created () {
@@ -52,28 +52,28 @@ export default {
       .then((res) => { return res.json() })
       .then((res) => {
         this.dataGroup = res
-      });
+      })
 
     eventBus.$on('favoriteItem', (fItem) => {
-      var compare = false;
+      var compare = false
       if (this.favorites.length) {
         this.favorites.map((favorite, i) => {
-          if ( favorite.url == fItem.url ) {
-            compare = true;
-            this.removeFavorites(i);
+          if (favorite.url === fItem.url) {
+            compare = true
+            this.removeFavorites(i)
             return false
           } else {
           }
         })
-        if (compare == false) {
+        if (compare === false) {
           this.addFavorites(fItem)
         }
       } else {
         this.addFavorites(fItem)
       }
-    });
+    })
 
-    this.favorites = JSON.parse(localStorage.getItem('favories'));
+    this.favorites = JSON.parse(localStorage.getItem('favories'))
   }
 }
 </script>

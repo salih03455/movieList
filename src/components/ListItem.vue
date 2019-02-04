@@ -25,10 +25,10 @@ export default {
       return images('./' + this.listitemdata.image.toLowerCase())
     },
     getYear () {
-      return this.listitemdata.published_date.split('-')[0];
+      return this.listitemdata.published_date.split('-')[0]
     },
     addFav () {
-      eventBus.$emit('favoriteItem', this.listitemdata);
+      eventBus.$emit('favoriteItem', this.listitemdata)
     }
   }
 }
