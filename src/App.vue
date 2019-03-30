@@ -11,10 +11,9 @@
         :key="data.id"
         :listdata="data"
       />
-      <Favorites
-        v-if="favorites.length > 2"
-        :favoritesdata="favorites"
-      />
+      <div class="favorites" v-if="isFavoritesShow">
+        <Favorites :favoritesdata="favorites" />
+      </div>
     </div>
   </div>
 </template>
@@ -47,6 +46,15 @@ export default {
       localStorage.setItem('favories', JSON.stringify(this.favorites))
     }
   },
+  computed: {
+    isFavoritesShow () {
+      if (this.favorites && this.favorites.length > 2) {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
   created () {
     fetch('https://dtv-projects.firebaseio.com/sections.json')
       .then((res) => { return res.json() })
@@ -72,8 +80,10 @@ export default {
         this.addFavorites(fItem)
       }
     })
-
-    this.favorites = JSON.parse(localStorage.getItem('favories'))
+    let localStorageData = JSON.parse(localStorage.getItem('favories'))
+    if (localStorageData) {
+      this.favorites = localStorageData
+    }
   }
 }
 </script>
